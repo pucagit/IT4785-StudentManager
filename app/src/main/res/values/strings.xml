@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">StudentManager</string>
+    <string name="add_student">Add Student</string>
+    <string name="student_name">Name:</string>
+    <string name="student_id">ID:</string>
+    <string name="nguyen_van_a">Nguyen Van A</string>
+    <string name="_20211234">20211234</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit_name">Edit</string>
+    <string name="edit">Edit</string>
+    <string name="remove">Remove</string>
+    <string name="edit_student">Edit Student</string>
+</resources>
