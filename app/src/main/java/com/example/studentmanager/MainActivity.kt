@@ -70,7 +70,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
         if (result.resultCode == RESULT_OK) {
             val name = result.data?.getStringExtra("name")
@@ -90,10 +89,14 @@ class MainActivity : AppCompatActivity() {
                 launcher.launch(intent)
                 true
             }
+            R.id.to_next_activity -> {
+                val intent = Intent(this, PopupMenuActivity::class.java)
+                startActivity(intent)
+                true
+            }
             else -> false
         }
     }
-
 
 //    Context Menu
     override fun onCreateContextMenu(

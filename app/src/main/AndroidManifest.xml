@@ -13,6 +13,9 @@
         android:theme="@style/Theme.StudentManager"
         tools:targetApi="31">
         <activity
+            android:name=".PopupMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditStudentActivity"
             android:exported="false" />
         <activity

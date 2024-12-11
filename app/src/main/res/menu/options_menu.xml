@@ -4,4 +4,8 @@
         android:id="@+id/item_add_std"
         android:title="@string/add_student"
         android:icon="@android:drawable/btn_plus"/>
+    <item
+        android:id="@+id/to_next_activity"
+        android:title="@string/next_page"
+        android:icon="@android:drawable/arrow_up_float"/>
 </menu>

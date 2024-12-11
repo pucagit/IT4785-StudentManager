@@ -10,4 +10,10 @@
     <string name="edit">Edit</string>
     <string name="remove">Remove</string>
     <string name="edit_student">Edit Student</string>
+    <string name="next_page">Next Page</string>
+    <string name="click_me">Click me</string>
+    <string name="now">Now</string>
+    <string name="you">You</string>
+    <string name="see">See</string>
+    <string name="me">Me</string>
 </resources>

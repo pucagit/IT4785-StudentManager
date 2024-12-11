@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="@string/now" />
+    <item
+        android:title="@string/you" />
+    <item
+        android:title="@string/see" />
+    <item
+        android:title="@string/me" />
+</menu>
