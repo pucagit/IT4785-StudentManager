@@ -25,6 +25,7 @@ class EditStudentActivity : AppCompatActivity() {
 
         val nameText = intent.getStringExtra("name")
         val idText = intent.getStringExtra("id")
+        val originalId = intent.getStringExtra("originalId")
 
         name.setText(nameText)
         id.setText(idText)
@@ -37,6 +38,7 @@ class EditStudentActivity : AppCompatActivity() {
                 val resultIntent = intent
                 resultIntent.putExtra("name", newName)
                 resultIntent.putExtra("id", newId)
+                resultIntent.putExtra("originalId", originalId) // Include original ID
                 setResult(RESULT_OK, resultIntent)
                 finish()
             } else {
