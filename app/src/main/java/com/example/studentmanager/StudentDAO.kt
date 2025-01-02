@@ -13,6 +13,6 @@ interface StudentDao {
     @Update
     suspend fun updateStudent(student: StudentModel): Int
 
-    @Query("DELETE FROM students WHERE id = :studentId")
+    @Query("DELETE FROM students WHERE studentId = :studentId")
     suspend fun deleteStudent(studentId: String): Int
 }

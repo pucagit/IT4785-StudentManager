@@ -9,8 +9,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
 
 class AddStudentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,16 +30,11 @@ class AddStudentActivity : AppCompatActivity() {
             val idStr = id.text.toString()
 
             if (nameStr.isNotEmpty() && idStr.isNotEmpty()) {
-                val newStudent = StudentModel(idStr, nameStr)
-                lifecycleScope.launch {
-                    val database = StudentDatabase.getInstance(this@AddStudentActivity)
-                    database.studentDao().addStudent(newStudent)
-                    setResult(Activity.RESULT_OK, Intent().apply {
-                        putExtra("name", nameStr)
-                        putExtra("id", idStr)
-                    })
-                    finish()
-                }
+                setResult(Activity.RESULT_OK, Intent().apply {
+                    putExtra("name", nameStr)
+                    putExtra("id", idStr)
+                })
+                finish()
             } else {
                 if (nameStr.isEmpty()) {
                     name.error = "Name cannot be empty"

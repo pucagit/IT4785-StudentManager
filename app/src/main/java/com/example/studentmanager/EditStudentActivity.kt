@@ -8,8 +8,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
 
 class EditStudentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +25,7 @@ class EditStudentActivity : AppCompatActivity() {
 
         val nameText = intent.getStringExtra("name")
         val idText = intent.getStringExtra("id")
+        val _id = intent.getIntExtra("_id", 0)
 
         name.setText(nameText)
         id.setText(idText)
@@ -36,16 +35,12 @@ class EditStudentActivity : AppCompatActivity() {
             val newId = id.text.toString()
 
             if (newName.isNotEmpty() && newId.isNotEmpty()) {
-                lifecycleScope.launch {
-                    val database = StudentDatabase.getInstance(this@EditStudentActivity)
-                    val studentDao = database.studentDao()
-                    studentDao.updateStudent(StudentModel(newId, newName))
-                    setResult(RESULT_OK, Intent().apply {
-                        putExtra("name", newName)
-                        putExtra("id", newId)
-                    })
-                    finish()
-                }
+                setResult(RESULT_OK, Intent().apply {
+                    putExtra("name", newName)
+                    putExtra("id", newId)
+                    putExtra("_id", _id)
+                })
+                finish()
             } else {
                 if (newName.isEmpty()) name.error = "Name cannot be empty"
                 if (newId.isEmpty()) id.error = "ID cannot be empty"

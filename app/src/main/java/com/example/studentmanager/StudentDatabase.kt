@@ -18,8 +18,8 @@ abstract class StudentDatabase : RoomDatabase() {
                 INSTANCE ?: Room.databaseBuilder(
                     context.applicationContext,
                     StudentDatabase::class.java,
-                    "students.db"
-                ).build().also { INSTANCE = it }
+                    "students_db"
+                ).fallbackToDestructiveMigration().build().also { INSTANCE = it }
             }
         }
     }

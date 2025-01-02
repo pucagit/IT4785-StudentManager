@@ -5,10 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "students")
 data class StudentModel(
-    @PrimaryKey
-    @ColumnInfo(name = "id")
+    @PrimaryKey(autoGenerate = true)
+    val _id: Int = 0,
     val studentId: String,
-
-    @ColumnInfo(name = "name")
     val studentName: String
 )

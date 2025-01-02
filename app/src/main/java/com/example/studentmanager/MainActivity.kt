@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             val id = result.data?.getStringExtra("id")
 
             if (!name.isNullOrEmpty() && !id.isNullOrEmpty()) {
-                val newStudent = StudentModel(id, name)
+                val newStudent = StudentModel(studentId = id, studentName = name)
                 lifecycleScope.launch {
                     studentDao.addStudent(newStudent)
                     students.add(newStudent)
@@ -80,11 +80,6 @@ class MainActivity : AppCompatActivity() {
             R.id.item_add_std -> {
                 val intent = Intent(this, AddStudentActivity::class.java)
                 launcher.launch(intent)
-                true
-            }
-            R.id.to_next_activity -> {
-                val intent = Intent(this, PopupMenuActivity::class.java)
-                startActivity(intent)
                 true
             }
             else -> false
@@ -105,18 +100,14 @@ class MainActivity : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             val newId = result.data?.getStringExtra("id")
             val newName = result.data?.getStringExtra("name")
+            val _id = result.data?.getIntExtra("_id", 0)
 
             if (!newName.isNullOrEmpty() && !newId.isNullOrEmpty()) {
                 lifecycleScope.launch {
-                    val updatedStudent = studentDao.getAllStudents().find { it.studentId == newId }
-                    if (updatedStudent != null) {
-                        // Update the students list
-                        val position = students.indexOfFirst { it.studentId == newId }
-                        if (position != -1) {
-                            students[position] = updatedStudent
-                            adapter.notifyDataSetChanged()
-                        }
-                    }
+                    studentDao.updateStudent(StudentModel(_id = _id!!, studentId = newId, studentName = newName))
+                    students.removeAll(students)
+                    students.addAll(studentDao.getAllStudents())
+                    adapter.notifyDataSetChanged()
                 }
             }
         }
@@ -129,8 +120,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, EditStudentActivity::class.java)
                 intent.putExtra("name", students[pos].studentName)
                 intent.putExtra("id", students[pos].studentId)
-                intent.putExtra("position", pos)
-                intent.putExtra("originalId", students[pos].studentId) // Pass original ID
+                intent.putExtra("_id", students[pos]._id)
                 editLauncher.launch(intent)
                 true
             }
